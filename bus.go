@@ -12,3 +12,15 @@ type Bus interface {
 	Publish(topic string, messages ...*message.Message) error
 	Subscribe(ctx context.Context, topic string) (<-chan *message.Message, error)
 }
+
+// Publisher contains the common structure for publishers
+type Publisher interface {
+	Close() error
+	Publish(topic string, messages ...*message.Message) error
+}
+
+// Subscriber contains the common structure for subscribers
+type Subscriber interface {
+	Close() error
+	Subscribe(ctx context.Context, topic string) (<-chan *message.Message, error)
+}
